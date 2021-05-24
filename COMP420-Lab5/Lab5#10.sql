@@ -1,0 +1,18 @@
+use imdb;
+
+DROP TRIGGER IF EXISTS round_rating;
+
+DELIMITER //
+CREATE TRIGGER round_rating
+BEFORE INSERT
+ON ratings
+FOR EACH ROW
+BEGIN
+	IF NEW.rating < 4985 THEN
+		SET NEW.rating = 4975;
+	ELSE
+		SET NEW.rating = 5000;
+	END IF;
+END //
+DELIMITER ;
+	

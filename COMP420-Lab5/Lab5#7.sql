@@ -1,0 +1,13 @@
+use imdb;
+
+DELIMITER //
+CREATE TRIGGER ins_movie_2021
+BEFORE INSERT
+ON titles
+FOR EACH ROW
+BEGIN
+	SET NEW.ended = 0;
+    SET NEW.premiered = 2021;
+END //
+DELIMITER ;
+	
